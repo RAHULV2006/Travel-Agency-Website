@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | CineVista Travels</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+
+        <div class="logo">
+            <h2>CineVista Travels</h2>
+        </div>
+         <div class="header-search">
+    <input type="text" id="searchInput"
+           placeholder="Search destinations...">
+
+    <button onclick="searchContent()">
+        <i class="fas fa-search"></i>
+    </button>
+</div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="destinations.html">Destinations</a></li>
+                <li><a href="packages.html">Tour Packages</a></li>
+                <li><a href="booking.html">Vehicle Booking</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html" class="active">Contact Us</a></li>
+                 <li><a href="login.html">Logout</a></li>
+            </ul>
+        </nav>
+
+        <div class="menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" style="height:60vh;">
+
+        <div class="slide active">
+            <img src="../images/hero1.jpg" alt="Contact Us">
+        </div>
+
+        <div class="hero-content">
+            <h1>Contact Us</h1>
+            <p>We are here to help you plan your next journey</p>
+        </div>
+
+    </section>
+
+    <!-- Contact Information -->
+    <section class="section">
+
+        <div class="section-title">
+            <h2>Get In Touch</h2>
+            <p>Feel free to contact us anytime</p>
+        </div>
+
+        <div class="card-container">
+
+            <div class="package-card">
+                <i class="fas fa-phone-alt fa-2x"></i>
+                <h3>Phone</h3>
+                <p>+91 98765 43210</p>
+                 
+                 <ul>
+        <li>✓ 24/7 Customer Support</li>
+        <li>✓ Instant Booking Assistance</li>
+        <li>✓ Travel Consultation</li>
+    </ul>
+
+            </div>
+
+            <div class="package-card">
+                <i class="fas fa-envelope fa-2x"></i>
+                <h3>Email</h3>
+                <p>info@CineVistatravels.com</p>
+
+                <ul>
+        <li>✓ Package Enquiries</li>
+        <li>✓ Vehicle Booking Requests</li>
+        <li>✓ Customer Feedback</li>
+    </ul>
+            </div>
+
+            <div class="package-card">
+                <i class="fas fa-map-marker-alt fa-2x"></i>
+                <h3>Address</h3>
+                <p>Tirunelveli, Tamil Nadu, India</p>
+                 <ul>
+        <li>✓ South India Tour Services</li>
+        <li>✓ Personalized Travel Plans</li>
+        <li>✓ Trusted Local Agency</li>
+    </ul>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Contact Form -->
+    <section class="section package-section">
+
+        <div class="section-title">
+            <h2>Send Us a Message</h2>
+        </div>
+
+       <form id="contactForm" onsubmit="sendMessage(event)">
+            <input
+    type="text"
+    id="name"
+    name="name"
+    placeholder="Your Name"
+    required
+>
+
+           <input
+    type="email"
+    id="email"
+    name="email"
+    placeholder="Your Email"
+    required
+>
+
+           <input
+    type="tel"
+    id="phone"
+    name="phone"
+    placeholder="Phone Number"
+    required
+>
+            <textarea
+    id="message"
+    rows="6"
+    placeholder="Enter Your Message"
+    required
+></textarea>
+
+            <button type="submit">
+                Send Message
+            </button>
+
+        </form>
+
+    </section>
+
+    <!-- Google Map -->
+    <section class="section">
+
+        <div class="section-title">
+            <h2>Our Location</h2>
+        </div>
+
+        <div style="width:100%; height:450px;">
+
+            <iframe
+                src="https://maps.google.com/maps?q=Tirunelveli&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                width="100%"
+                height="450"
+                style="border:0; border-radius:15px;"
+                allowfullscreen=""
+                loading="lazy">
+            </iframe>
+
+        </div>
+
+    </section>
+
+   <!-- Business Hours -->
+<section class="section package-section">
+
+    <div class="section-title">
+        <h2>Business Hours</h2>
+        <p>We're here to help you plan your perfect journey</p>
+    </div>
+
+    <div class="card-container">
+
+        <div class="package-card">
+            <br>
+            <i class="fas fa-briefcase fa-2x"></i>
+            <h3>Monday - Friday</h3>
+            <p><strong>9:00 AM - 8:00 PM</strong></p>
+            <br>
+            <p>✓Tour package bookings</p>
+            
+            <p>✓Vehicle reservation services</p>
+            <p>✓Customer support and enquiries</p>
+        </div>
+
+        <div class="package-card">
+            <br>
+            <i class="fas fa-calendar-day fa-2x"></i>
+            <h3>Saturday</h3>
+            <p><strong>9:00 AM - 6:00 PM</strong></p>
+            <br>
+            <p>✓Weekend travel planning</p>
+            <p>✓Special package consultations</p>
+            <p>✓Booking assistance available</p>
+        </div>
+
+        <div class="package-card">
+            <br>
+            <i class="fas fa-headset fa-2x"></i>
+            <h3>Sunday</h3>
+            <p><strong>10:00 AM - 4:00 PM</strong></p>
+            <br>
+            <p>✓Limited customer support</p>
+            <p>✓Travel guidance and enquiries</p>
+            <p>✓Emergency booking assistance</p>
+        </div>
+
+    </div>
+
+</section>
+
+    <!-- Footer -->
+    <footer>
+
+        <div class="footer-content">
+
+            <h3>CineVista Travels</h3>
+
+            <p>
+                Your trusted travel partner across South India.
+            </p>
+
+            <div class="social-icons">
+                <i class="fab fa-facebook"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-whatsapp"></i>
+                <i class="fab fa-youtube"></i>
+            </div>
+
+        </div>
+
+        <p class="copyright">
+            © 2026 CineVista Travels. All Rights Reserved.
+        </p>
+
+    </footer>
+
+    <script src="../js/script.js"></script>
+<script>
+async function sendMessage(event){
+
+    console.log("Function started");
+
+    event.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+    const message = document.getElementById("message").value;
+
+    console.log(name, email, phone, message);
+
+    try {
+
+        const response = await fetch("http://localhost:5000/contact", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name,
+                email,
+                phone,
+                message
+            })
+        });
+
+        console.log("Request sent");
+
+        const data = await response.json();
+
+        console.log(data);
+
+        alert(data.message);
+
+    } catch(error) {
+
+        console.error(error);
+
+        alert("Server connection failed");
+    }
+}
+</script>
+
+
+    
+
+</body>
+</html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Booking | CineVista Travels</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+
+        <div class="logo">
+            <h2>CineVista Travels</h2>
+        </div>
+
+         <div class="header-search">
+    <input type="text" id="searchInput"
+           placeholder="Search destinations...">
+
+    <button onclick="searchContent()">
+        <i class="fas fa-search"></i>
+    </button>
+</div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="destinations.html">Destinations</a></li>
+                <li><a href="packages.html">Tour Packages</a></li>
+                <li><a href="booking.html" class="active">Vehicle Booking</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                 <li><a href="login.html">Logout</a></li>
+            </ul>
+        </nav>
+
+        <div class="menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" style="height:60vh;">
+
+        <div class="slide active">
+            <img src="../images/hero3.jpg" alt="Vehicle Booking">
+        </div>
+
+        <div class="hero-content">
+            <h1>Vehicle Booking</h1>
+            <p>Book comfortable vehicles for your journey</p>
+        </div>
+
+    </section>
+
+    <!-- Vehicle Cards -->
+    <section class="section">
+
+        <div class="section-title">
+            <h2>Available Vehicles</h2>
+            <p>Select the best vehicle for your trip</p>
+        </div>
+
+        <div class="card-container">
+
+            <div class="card">
+                <img src="../images/sedan.jpg" alt="Sedan">
+
+                <div class="card-content">
+                    <h3>Sedan</h3>
+                    <p>Comfortable for 4 passengers.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="../images/suv.jpg" alt="SUV">
+
+                <div class="card-content">
+                    <h3>SUV</h3>
+                    <p>Perfect for family trips and long journeys.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="../images/tempo.jpg" alt="Tempo Traveller">
+
+                <div class="card-content">
+                    <h3>Tempo Traveller</h3>
+                    <p>Ideal for group tours and family vacations.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="../images/minibus.jpg" alt="Mini Bus">
+
+                <div class="card-content">
+                    <h3>Mini Bus</h3>
+                    <p>Suitable for large groups and events.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Booking Form -->
+    <section class="section package-section">
+
+        <div class="section-title">
+            <h2>Book Your Vehicle</h2>
+            <p>Fill in your travel details</p>
+        </div>
+
+        <form id="vehicleBookingForm">
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Full Name"
+                required
+            >
+
+            <input
+                type="tel"
+                id="phone"
+                placeholder="Phone Number"
+                required
+            >
+
+            <input
+                type="text"
+                id="pickup"
+                placeholder="Pickup Location"
+                required
+            >
+
+            <input
+                type="text"
+                id="destination"
+                placeholder="Destinations"
+                required
+            >
+
+             <select id="package" required>
+                <option value="">Select package</option>
+                <option>No Package</option>
+                <option>Hill Station Package</option>
+                <option>Temple Tour Package</option>
+                <option>Kerala Nature Package</option>
+        <option>Weekend Getaway</option>
+        <option>Family Vacation Package</option>
+        <option>Beach Vacation Package</option>
+        <option>South India Grand Tour</option>
+        <option>Friends Tour Package</option>
+        <option>School Student Package</option>
+        <option>Adventure Package</option>
+        <option>College IV Package</option>
+        <option>Wildlife Safari Package</option>
+   
+            </select>
+
+            <select id="vehicle" required>
+                <option value="">Select Vehicle</option>
+                <option>Sedan</option>
+                <option>SUV</option>
+                <option>Tempo Traveller</option>
+                <option>Mini Bus</option>
+            </select>
+
+            <input
+                type="date"
+                id="travelDate"
+                required
+            >
+
+            <button type="submit">
+                Book Vehicle
+            </button>
+
+        </form>
+
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="section">
+
+        <div class="section-title">
+            <h2>Why Choose CineVista Travels?</h2>
+        </div>
+
+        <div class="card-container">
+
+            <div class="package-card">
+                <i class="fas fa-user-tie fa-2x"></i>
+                <h3>Professional Drivers</h3>
+                <p>Experienced and friendly drivers.</p>
+                <ul>
+                <li>✓ Licensed Drivers</li>
+                <li>✓ Local Route Knowledge</li>
+                <li>✓ Customer-Friendly Service</li>
+            </ul>
+            </div>
+
+            <div class="package-card">
+                <i class="fas fa-car fa-2x"></i>
+                <h3>Well Maintained Vehicles</h3>
+                <p>Clean and comfortable travel experience.</p>
+                  <ul>
+                <li>✓ Regular Maintenance</li>
+                <li>✓ AC & Non-AC Options</li>
+                <li>✓ Comfortable Seating</li>
+            </ul>
+            </div>
+
+            <div class="package-card">
+                <i class="fas fa-clock fa-2x"></i>
+                <h3>24/7 Support</h3>
+                <p>Always available to assist your travel needs.</p>
+                 <ul>
+                <li>✓ Quick Response</li>
+                <li>✓ Emergency Assistance</li>
+                <li>✓ Travel Guidance</li>
+            </ul>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+
+        <div class="footer-content">
+
+            <h3>CineVista Travels</h3>
+
+            <p>
+                Safe, comfortable and affordable travel solutions.
+            </p>
+
+            <div class="social-icons">
+                <i class="fab fa-facebook"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-whatsapp"></i>
+                <i class="fab fa-youtube"></i>
+            </div>
+
+        </div>
+
+        <p class="copyright">
+            © 2026 CineVistaTravels. All Rights Reserved.
+        </p>
+
+    </footer>
+
+    <script src="../js/script.js"></script>
+
+<script>
+const bookingForm =
+    document.getElementById("vehicleBookingForm");
+
+bookingForm.addEventListener("submit", async function(e) {
+
+    e.preventDefault();
+
+    const name =
+        document.getElementById("name").value;
+
+    const phone =
+        document.getElementById("phone").value;
+
+    const pickup =
+        document.getElementById("pickup").value;
+
+    const destination =
+        document.getElementById("destination").value;
+const packageName =
+    document.getElementById("package").value;
+
+    const vehicle =
+        document.getElementById("vehicle").value;
+
+    const travelDate =
+        document.getElementById("travelDate").value;
+
+    try {
+
+    console.log("Sending request...");
+
+    const response = await fetch(
+        "http://localhost:5000/booking",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name,
+                phone,
+                pickup,
+                destination,
+                packageName,
+                vehicle,
+                travelDate
+            })
+        }
+    );
+
+    console.log("Status:", response.status);
+
+    const text = await response.text();
+
+    console.log("Response:", text);
+
+    alert(text);
+
+} catch(error) {
+
+    console.error("FULL ERROR:", error);
+
+    alert("Booking failed");
+
+}
+
+});
+</script>
+
+</body>
+</html>

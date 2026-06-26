@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Login | CineVista Travels</title>
+
+<link rel="stylesheet" href="../css/style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(rgba(0,0,0,0.5),
+    rgba(0,0,0,0.5)),
+    url('../images/hero1.jpg');
+    background-size:cover;
+    background-position:center;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.login-container{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.login-box{
+    width:420px;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+.login-logo{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.login-logo i{
+    font-size:50px;
+    color:#0077b6;
+}
+
+.login-logo h2{
+    color:#0077b6;
+    margin-top:10px;
+}
+
+.login-box input{
+    width:100%;
+    padding:12px;
+    margin-bottom:15px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    outline:none;
+}
+
+.password-box{
+    position:relative;
+}
+
+.password-box i{
+    position:absolute;
+    right:15px;
+    top:15px;
+    cursor:pointer;
+    color:#666;
+}
+
+.login-options{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+    font-size:14px;
+}
+
+.login-options a{
+    text-decoration:none;
+    color:#0077b6;
+}
+
+.login-btn{
+    width:100%;
+    padding:12px;
+    background:#0077b6;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.login-btn:hover{
+    background:#023e8a;
+}
+
+.google-btn{
+    width:100%;
+    margin-top:12px;
+    padding:12px;
+    background:#db4437;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.google-btn:hover{
+    background:#c23321;
+}
+
+.register-link{
+    text-align:center;
+    margin-top:20px;
+}
+
+.register-link a{
+    color:#0077b6;
+    text-decoration:none;
+    font-weight:600;
+}
+
+@media(max-width:500px){
+
+    .login-box{
+        width:90%;
+        padding:25px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="login-container">
+
+<div class="login-box">
+
+<div class="login-logo">
+<i class="fas fa-plane-departure"></i>
+<h2>CineVista Travels</h2>
+<p>Your Trusted Travel Partner</p>
+</div>
+
+<form id="loginForm">
+
+<input type="email"
+           id="email"
+           placeholder="Email Address"
+           required>
+
+<div class="password-box">
+
+<input type="password"
+id="password"
+placeholder="Enter Password"
+required>
+
+<i class="fas fa-eye"
+id="togglePassword"></i>
+
+</div>
+
+<div class="login-options">
+
+    <label class="remember-box">
+        <input type="checkbox" id="rememberMe">
+        <span>Remember Me</span>
+    </label>
+
+    <a href="forgot-password.html">
+        Forgot Password?
+    </a>
+
+</div>
+
+<button
+    type="submit"
+    class="login-btn">
+    Login
+</button>
+
+<button type="button"
+class="google-btn"
+onclick="EmailLogin()">
+<i class="fab fa-email"></i>
+ Login with Email
+</button>
+
+<div class="register-link">
+
+<p>
+Don't have an account?
+<a href="register.html">
+Register Here
+</a>
+</p>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+<script>
+
+const togglePassword =
+document.getElementById("togglePassword");
+
+const passwordField =
+document.getElementById("password");
+
+togglePassword.addEventListener("click", () => {
+
+    if(passwordField.type === "password"){
+
+        passwordField.type = "text";
+
+        togglePassword.classList.remove("fa-eye");
+        togglePassword.classList.add("fa-eye-slash");
+
+    }else{
+
+        passwordField.type = "password";
+
+        togglePassword.classList.remove("fa-eye-slash");
+        togglePassword.classList.add("fa-eye");
+
+    }
+
+});
+
+document.getElementById("loginForm")
+.addEventListener("submit", async function(event){
+
+    event.preventDefault();
+
+    const email =
+    document.getElementById("email").value;
+
+    const password =
+    document.getElementById("password").value;
+
+    try{
+
+        const response = await fetch(
+            "http://localhost:5000/login",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email,
+                    password
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        if(data.success){
+
+            localStorage.setItem(
+                "cinevistaUser",
+                data.fullname
+            );
+
+            alert("Login Successful!");
+
+            window.location.href =
+            "index.html";
+
+        }else{
+
+            alert(data.message);
+
+        }
+
+    }catch(error){
+
+        console.log(error);
+
+        alert("Server Error");
+
+    }
+
+});
+
+function EmailLogin(){
+
+    window.location.href =
+    "register.html";
+
+}
+
+</script>
+</body>
+</body>
+</html>

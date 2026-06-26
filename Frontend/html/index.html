@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineVista Travels - Explore South India</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+   <header>
+
+    <div class="logo">
+        <h2>CineVista Travels</h2>
+    </div>
+
+    <div class="header-search">
+        <input type="text" id="searchInput"
+               placeholder="Search destinations...">
+        <button onclick="searchContent()">
+            <i class="fas fa-search"></i>
+        </button>
+    </div>
+
+    <nav>
+        <ul id="navMenu">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="destinations.html">Destinations</a></li>
+            <li><a href="packages.html">Tour Packages</a></li>
+            <li><a href="booking.html">Vehicle Booking</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="login.html">Logout</a></li>
+        </ul>
+        
+
+    </nav>
+
+    <div class="menu-btn" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+    </div>
+
+</header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+
+        <div class="slide active">
+            <img src="../images/hero1.jpg" alt="South India">
+        </div>
+
+        <div class="slide">
+            <img src="../images/hero2.jpg" alt="Travel">
+        </div>
+
+        <div class="slide">
+            <img src="../images/hero3.jpg" alt="Tour">
+        </div>
+
+        <div class="hero-content">
+            <h1>Explore South India</h1>
+            <p>Discover breathtaking destinations and unforgettable journeys.</p>
+            <a href="packages.html" class="btn">View Packages</a>
+        </div>
+
+    </section>
+
+    <!-- Popular Destinations -->
+    <section class="section">
+
+        <div class="section-title">
+            <h2>Popular Destinations</h2>
+            <p>Top tourist attractions in South India</p>
+        </div>
+
+        <div class="card-container">
+            
+            
+             <a href="kodaikanal.html" class="destination-link">
+            <div class="card">
+                <img src="../images/kodaikanal.jpg" alt="">
+                <div class="card-content">
+                    <h3>Kodaikanal</h3>
+                    <p>Beautiful lakes, waterfalls and hills.</p>
+                </div>
+            </div>
+            </a>
+
+            <a href="ooty.html" class="destination-link">
+
+
+            <div class="card">
+                <img src="../images/ooty.jpg" alt="">
+                <div class="card-content">
+                    <h3>Ooty</h3>
+                    <p>Queen of Hills with tea plantations.</p>
+                </div>
+            </div>
+            </a>
+            <a href="rameswaram.html" class="destination-link">
+            <div class="card">
+                <img src="../images/rameswaram.jpg" alt="">
+                <div class="card-content">
+                    <h3>Rameswaram</h3>
+                    <p>Spiritual destination with historic temples with beaches.</p>
+                </div>
+            </div>
+            </a>
+            
+                 <!-- Kanyakumari -->
+                <a href="kanyakumari.html" class="destination-link">
+                <div class="card">
+                    <img src="../images/kanyakumari.jpg" alt="Kanyakumari">
+
+                    <div class="card-content">
+                        <h3>Kanyakumari</h3>
+                        <p>
+                            The southern tip of India famous for
+                            sunrise and sunset.
+                        </p>
+
+                        
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </section>
+
+    <!-- Featured Packages -->
+    <section class="section package-section">
+
+        <div class="section-title">
+            <h2>Featured Tour Packages</h2>
+            <p>Choose your perfect travel experience</p>
+        </div>
+
+        <div class="card-container">
+<div class="package-card">
+    <h3>Hill Station Tour</h3>
+
+    <p><strong>Destinations:</strong><br>
+    Kodaikanal + Ooty</p>
+
+    <p><strong>Duration:</strong><br>
+    3 Days / 2 Nights</p>
+
+    <p>✓ Hotel Stay Included</p>
+    <p>✓ Sightseeing Included</p>
+    <p>✓ Comfortable Transport</p>
+
+    <h4>₹8,999</h4>
+
+     <a href="booking.html" class="btn">
+            Book Now
+        </a>
+</div>
+
+           <div class="package-card">
+    <h3>Temple Tour</h3>
+
+    <p><strong>Destinations:</strong><br>
+    Madurai + Rameswaram</p>
+
+    <p><strong>Duration:</strong><br>
+    2 Days / 1 Night</p>
+
+    <p>✓ Temple Visits</p>
+    <p>✓ Hotel Accommodation</p>
+    <p>✓ Guided Tour</p>
+
+    <h4>₹6,999</h4>
+
+     <a href="booking.html" class="btn">
+            Book Now
+        </a>
+</div>
+
+           <div class="package-card">
+    <h3>Family Vacation</h3>
+
+    <p><strong>Destinations:</strong><br>
+    South India Tour</p>
+
+    <p><strong>Duration:</strong><br>
+    5 Days / 4 Nights</p>
+
+    <p>✓ Family-Friendly Hotels</p>
+    <p>✓ Food Included</p>
+    <p>✓ Local Sightseeing</p>
+
+    <h4>₹14,999</h4>
+
+     <a href="booking.html" class="btn">
+            Book Now
+        </a>
+</div>
+
+        </div>
+
+    </section>
+
+    <!-- Reviews -->
+    <section class="section review-section">
+
+        <div class="section-title">
+            <h2>Customer Reviews</h2>
+        </div>
+
+        <div class="reviews">
+
+            <div class="review-card">
+                <p>"Excellent service and comfortable journey."</p>
+                <h4>- Rahul</h4>
+            </div>
+
+            <div class="review-card">
+                <p>"Best travel agency for family tours."</p>
+                <h4>- Priya</h4>
+            </div>
+
+            <div class="review-card">
+                <p>"Affordable packages and friendly staff."</p>
+                <h4>- Karthik</h4>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Contact Form -->
+    <section class="section">
+
+        <div class="section-title">
+            <h2>Quick Contact</h2>
+        </div>
+
+        <form id="homeContactForm">
+
+    <input
+        type="text"
+        id="homeName"
+        placeholder="Your Name"
+        required
+    >
+
+    <input
+        type="email"
+        id="homeEmail"
+        placeholder="Email Address"
+        required
+    >
+
+    <input
+        type="tel"
+        id="homePhone"
+        placeholder="Phone Number"
+        required
+    >
+
+    <textarea
+        id="homeMessage"
+        rows="5"
+        placeholder="Enter Your Message"
+        required>
+    </textarea>
+    
+
+
+    <button type="submit">
+        Send Message
+    </button>
+
+</form>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+
+        <div class="footer-content">
+
+            <h3>CineVista Travels</h3>
+
+            <p>Your trusted travel partner across South India.</p>
+
+            <div class="social-icons">
+                <i class="fab fa-facebook"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-whatsapp"></i>
+                <i class="fab fa-youtube"></i>
+            </div>
+
+        </div>
+
+        <p class="copyright">
+            © 2026 CineVista Travels. All Rights Reserved.
+        </p>
+
+    </footer>
+
+    <script src="../js/script.js"></script>
+
+<script>
+
+let user =
+localStorage.getItem("cinevistaUser");
+
+if(user){
+    console.log("Welcome " + user);
+}
+
+</script>
+
+<!-- PASTE THE HOME CONTACT FORM CODE HERE -->
+
+<script>
+
+const homeContactForm =
+document.getElementById("homeContactForm");
+
+homeContactForm.addEventListener(
+"submit",
+async function(e){
+
+    e.preventDefault();
+
+    const name =
+    document.getElementById("homeName").value;
+
+    const email =
+    document.getElementById("homeEmail").value;
+
+    const phone =
+    document.getElementById("homePhone").value;
+
+    const message =
+    document.getElementById("homeMessage").value;
+
+    try{
+
+        const response =
+        await fetch(
+        "http://localhost:5000/contact",
+        {
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                name,
+                email,
+                phone,
+                message
+            })
+        });
+
+        const data =
+        await response.json();
+
+        alert(data.message);
+
+        homeContactForm.reset();
+
+    }
+    catch(error){
+
+        console.log(error);
+
+        alert("Connection Failed");
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
