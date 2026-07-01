@@ -180,6 +180,7 @@ bookings.forEach((booking)=>{
 
 bookingTable.innerHTML+=`
 
+
 <tr>
 
 <td>${booking.id}</td>
@@ -214,23 +215,57 @@ ${booking.paymentstatus}
 
 <td>
 
+<div class="action-buttons">
+
 <button
 class="viewBtn"
 onclick="viewBooking(${booking.id})">
+
+<i class="fas fa-eye"></i>
 
 View Details
 
 </button>
 
-${booking.status === "Upcoming" ? `
+${booking.status!="Cancelled" && booking.paymentstatus=="Pending" ? `
+
 <button
 class="cancelBtn"
-onclick="cancelTrip(${booking.id})">
+onclick="cancelBooking(${booking.id})">
+
+<i class="fas fa-times-circle"></i>
 
 Cancel Trip
 
 </button>
+
+<button
+class="payBtn"
+onclick="openPayment(${booking.id})">
+
+<i class="fas fa-credit-card"></i>
+
+Pay Now
+
+</button>
+
 ` : ""}
+
+${booking.paymentstatus=="Paid" ? `
+
+<button
+class="receiptBtn"
+onclick="downloadReceipt(${booking.id})">
+
+<i class="fas fa-file-pdf"></i>
+
+Receipt
+
+</button>
+
+` : ""}
+
+</div>
 
 </td>
 
@@ -242,39 +277,36 @@ Cancel Trip
 
 }
 
-// ============================================
+
 // DASHBOARD COUNTS
 // ============================================
 
 function dashboard(bookings){
 
-totalBookings.innerHTML=
+    // Total Bookings
+    totalBookings.innerHTML = bookings.length;
 
-bookings.length;
+    // Upcoming Trips (Upcoming + Confirmed)
+    upcomingTrips.innerHTML = bookings.filter(
 
-upcomingTrips.innerHTML=
+        b => b.status === "Upcoming" ||
+             b.status === "Confirmed"
 
-bookings.filter(
+    ).length;
 
-b=>b.status==="Upcoming"
+    // Completed Trips
+    completedTrips.innerHTML = bookings.filter(
 
-).length;
+        b => b.status === "Completed"
 
-completedTrips.innerHTML=
+    ).length;
 
-bookings.filter(
+    // Cancelled Trips
+    cancelledTrips.innerHTML = bookings.filter(
 
-b=>b.status==="Completed"
+        b => b.status === "Cancelled"
 
-).length;
-
-cancelledTrips.innerHTML=
-
-bookings.filter(
-
-b=>b.status==="Cancelled"
-
-).length;
+    ).length;
 
 }
 
@@ -540,11 +572,15 @@ printWindow.print();
 // DOWNLOAD RECEIPT
 // ============================================
 
-function downloadReceipt(){
+function downloadReceipt(id){
 
-alert(
-"PDF Download feature will be connected with the backend."
-);
+    window.open(
+
+        `${API_URL}/receipt/${id}`,
+
+        "_blank"
+
+    );
 
 }
 // ============================================
@@ -672,7 +708,7 @@ window.addEventListener("load", async function () {
 
 });
 
-async function cancelTrip(id){
+async function cancelBooking(id){
 
     const confirmCancel = confirm(
         "Are you sure you want to cancel this trip?"
@@ -807,4 +843,84 @@ document.getElementById("editProfileForm")
     }
 
 });
+let paymentBookingId=null;
+
+function openPayment(id){
+
+    paymentBookingId=id;
+
+    document.getElementById(
+    "paymentBookingId"
+    ).value=id;
+
+    document.getElementById(
+    "paymentModal"
+    ).style.display="flex";
+
+}
+
+function closePayment(){
+
+    document.getElementById(
+    "paymentModal"
+    ).style.display="none";
+
+}
+async function confirmPayment(){
+
+    const method=document.getElementById(
+    "paymentMethod"
+    ).value;
+
+    try{
+
+        const response=await fetch(
+
+        `${API_URL}/payBooking`,
+
+        {
+
+            method:"PUT",
+
+            headers:{
+                "Content-Type":"application/json"
+            },
+
+            body:JSON.stringify({
+
+                id:paymentBookingId,
+
+                paymentMethod:method
+
+            })
+
+        }
+
+        );
+
+        const data=await response.json();
+
+        alert(data.message);
+
+        if(data.success){
+
+            closePayment();
+
+            loadBookings();
+
+            loadDashboard();
+
+        }
+
+    }
+
+    catch(err){
+
+        console.log(err);
+
+        alert("Payment Failed");
+
+    }
+
+}
 console.log("CineVista Travels Profile Dashboard Ready.");

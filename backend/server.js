@@ -1,3 +1,5 @@
+
+const PDFDocument = require("pdfkit");
 console.log("SERVER FILE =", __filename);
 
 const db = require("./db");
@@ -444,6 +446,190 @@ app.put("/updateProfile", (req, res) => {
         }
 
     );
+
+});
+app.put("/payBooking",(req,res)=>{
+
+    const{
+
+        id,
+
+        paymentMethod
+
+    }=req.body;
+
+    const sql=`
+
+    UPDATE bookings
+
+    SET
+
+    paymentstatus='Paid',
+
+    status='Confirmed'
+
+    WHERE id=?
+
+    `;
+
+    db.query(sql,[id],(err,result)=>{
+
+        if(err){
+
+            console.log(err);
+
+            return res.json({
+
+                success:false,
+
+                message:"Payment Failed"
+
+            });
+
+        }
+
+        res.json({
+
+            success:true,
+
+            message:"Payment Successful.\nBooking Confirmed."
+
+        });
+
+    });
+
+});
+app.get("/receipt/:id", (req, res) => {
+
+    const id = req.params.id;
+
+    const sql = `
+        SELECT *
+        FROM bookings
+        WHERE id = ?
+    `;
+
+    db.query(sql, [id], (err, result) => {
+
+        if (err) {
+
+            console.log(err);
+
+            return res.send("Database Error");
+
+        }
+
+        if (result.length === 0) {
+
+            return res.send("Receipt Not Found");
+
+        }
+
+        const booking = result[0];
+
+        const doc = new PDFDocument({
+
+            margin: 50
+
+        });
+
+        res.setHeader(
+
+            "Content-Type",
+
+            "application/pdf"
+
+        );
+
+        res.setHeader(
+
+            "Content-Disposition",
+
+            `attachment; filename=Receipt_${booking.id}.pdf`
+
+        );
+
+        doc.pipe(res);
+
+        // ==========================
+        // Header
+        // ==========================
+
+        doc
+        .fontSize(24)
+        .fillColor("#0077b6")
+        .text("CineVista Travels", {
+
+            align: "center"
+
+        });
+
+        doc.moveDown();
+
+        doc
+        .fontSize(18)
+        .fillColor("black")
+        .text("Booking Receipt", {
+
+            align: "center"
+
+        });
+
+        doc.moveDown(2);
+
+        // ==========================
+        // Customer Details
+        // ==========================
+
+        doc.fontSize(13);
+
+        doc.text(`Booking ID : ${booking.id}`);
+        doc.text(`Customer Name : ${booking.name}`);
+        doc.text(`Email : ${booking.email}`);
+        doc.text(`Phone : ${booking.phone}`);
+
+        doc.moveDown();
+
+        // ==========================
+        // Trip Details
+        // ==========================
+
+        doc.text(`Package : ${booking.package}`);
+        doc.text(`Pickup : ${booking.pickup}`);
+        doc.text(`Destination : ${booking.destination}`);
+        doc.text(`Vehicle : ${booking.vehicle}`);
+        doc.text(`Travel Date : ${booking.travel_date}`);
+        doc.text(`Booking Date : ${booking.bookingdate}`);
+
+        doc.moveDown();
+
+        // ==========================
+        // Payment
+        // ==========================
+
+        doc.text(`Payment Status : ${booking.paymentstatus}`);
+        doc.text(`Booking Status : ${booking.status}`);
+
+        doc.moveDown(2);
+
+        doc
+        .fillColor("green")
+        .fontSize(16)
+        .text(
+
+            "Thank you for choosing CineVista Travels!",
+
+            {
+
+                align: "center"
+
+            }
+
+        );
+
+        doc.end();
+
+    });
 
 });
 

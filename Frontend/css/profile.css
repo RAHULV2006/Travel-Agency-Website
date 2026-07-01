@@ -1384,3 +1384,372 @@ footer{
     background:#b02a37;
 
 }
+
+
+
+
+
+/* ===========================
+   ACTION BUTTONS
+=========================== */
+
+.action-buttons{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    width:100%;
+
+}
+
+/* Common style for all buttons */
+
+.action-buttons button{
+
+    width:140px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:8px;
+
+    color:#fff;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+}
+
+/* View Details */
+
+.viewBtn{
+
+    background:#0077b6;
+
+}
+
+.viewBtn:hover{
+
+    background:#005f8e;
+
+}
+
+/* Cancel Trip */
+
+.cancelBtn{
+
+    background:#dc3545;
+
+}
+
+.cancelBtn:hover{
+
+    background:#b52b3a;
+
+}
+
+/* Pay Now */
+
+.payBtn{
+
+    background:#28a745;
+
+}
+
+.payBtn:hover{
+
+    background:#218838;
+
+}
+
+/* Icons */
+
+.action-buttons button i{
+
+    margin-right:6px;
+
+}
+
+/* Keep the action column centered */
+
+td:last-child{
+
+    text-align:center;
+
+    vertical-align:middle;
+
+}
+/* Action column */
+
+th:last-child,
+td:last-child{
+
+    min-width:180px;
+
+    width:180px;
+
+    text-align:center;
+
+    vertical-align:middle;
+
+}
+.action-buttons button{
+     
+     margin:0;
+
+    padding:10px 15px;
+
+
+    width:150px;
+
+    height:45px;
+
+    white-space:nowrap;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+}
+.action-buttons{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap: 10px;     
+
+}
+
+/* ==========================
+   PAYMENT MODAL
+========================== */
+
+.modal{
+
+    display:none;
+
+    position:fixed;
+
+    left:0;
+
+    top:0;
+
+    width:100%;
+
+    height:100%;
+
+    background:rgba(0,0,0,.55);
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:9999;
+
+}
+
+.payment-box{
+
+    position:relative;
+
+    width:420px;
+
+    background:#fff;
+
+    border-radius:15px;
+
+    padding:35px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+
+    animation:popup .3s ease;
+
+}
+
+@keyframes popup{
+
+    from{
+
+        transform:scale(.8);
+
+        opacity:0;
+
+    }
+
+    to{
+
+        transform:scale(1);
+
+        opacity:1;
+
+    }
+
+}
+
+.payment-box h2{
+
+    text-align:center;
+
+    color:#0077b6;
+
+    margin-bottom:30px;
+
+    font-size:30px;
+
+}
+
+.payment-box h2 i{
+
+    margin-right:10px;
+
+}
+
+.payment-box label{
+
+    display:block;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    margin-bottom:10px;
+
+}
+
+.payment-box select{
+
+    width:100%;
+
+    height:48px;
+
+    border:1px solid #ccc;
+
+    border-radius:8px;
+
+    padding:0 12px;
+
+    font-size:16px;
+
+    margin-bottom:25px;
+
+}
+
+.payNowBtn{
+
+    width:100%;
+
+    height:50px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#0077b6;
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.payNowBtn:hover{
+
+    background:#005f8d;
+
+}
+
+.close{
+
+    position:absolute;
+
+    right:20px;
+
+    top:15px;
+
+    font-size:32px;
+
+    cursor:pointer;
+
+    color:#666;
+
+}
+
+.close:hover{
+
+    color:red;
+
+}
+
+/* ===========================
+   RECEIPT BUTTON
+=========================== */
+
+.receiptBtn{
+
+    width:150px;
+
+    height:42px;
+
+    background:#ff9800;
+
+    color:#fff;
+
+    border:none;
+
+    border-radius:8px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    transition:.3s;
+
+}
+
+.receiptBtn:hover{
+
+    background:#f57c00;
+
+}
+
+.receiptBtn i{
+
+    font-size:16px;
+
+}
