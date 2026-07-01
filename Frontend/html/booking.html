@@ -37,7 +37,7 @@
                 <li><a href="booking.html" class="active">Vehicle Booking</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="contact.html">Contact Us</a></li>
-                 <li><a href="login.html">Logout</a></li>
+                 <li><a href="profile.html">My Profile</a></li>
             </ul>
         </nav>
 
@@ -122,32 +122,40 @@
         <form id="vehicleBookingForm">
 
             <input
-                type="text"
-                id="name"
-                placeholder="Full Name"
-                required
-            >
+    type="text"
+    id="name"
+    placeholder="Full Name"
+    pattern="[A-Za-z ]+"
+    title="Please enter only letters and spaces."
+    required
+>
 
             <input
-                type="tel"
-                id="phone"
-                placeholder="Phone Number"
-                required
-            >
+    type="tel"
+    id="phone"
+    placeholder="Phone Number"
+    pattern="[6-9]{1}[0-9]{9}"
+    maxlength="10"
+    title="Enter a valid 10-digit mobile number"
+    required
+>
 
             <input
-                type="text"
-                id="pickup"
-                placeholder="Pickup Location"
-                required
-            >
+    type="text"
+    id="pickup"
+    placeholder="Pickup Location"
+    pattern="[A-Za-z ]+"
+    title="Only letters and spaces are allowed"
+    required>
 
-            <input
-                type="text"
-                id="destination"
-                placeholder="Destinations"
-                required
-            >
+          <input
+    type="text"
+    id="destination"
+    placeholder="Destination"
+    pattern="[A-Za-z,& ]+"
+    title="Only letters, commas (,), spaces, and '&' are allowed"
+    required
+>
 
              <select id="package" required>
                 <option value="">Select package</option>
@@ -180,6 +188,12 @@
                 id="travelDate"
                 required
             >
+            <script>
+                const travelDate = document.getElementById("travelDate");
+
+const today = new Date().toISOString().split("T")[0];
+travelDate.min = today;
+            </script>
 
             <button type="submit">
                 Book Vehicle
@@ -290,6 +304,9 @@ const packageName =
 
     const travelDate =
         document.getElementById("travelDate").value;
+        const email = localStorage.getItem("userEmail");
+
+console.log("Email:", email);
 
     try {
 
@@ -309,7 +326,8 @@ const packageName =
                 destination,
                 packageName,
                 vehicle,
-                travelDate
+                travelDate,
+                email
             })
         }
     );
@@ -320,7 +338,16 @@ const packageName =
 
     console.log("Response:", text);
 
+    if(response.ok){
+
+    showPopup();
+
+}
+else{
+
     alert(text);
+
+}
 
 } catch(error) {
 
@@ -332,6 +359,32 @@ const packageName =
 
 });
 </script>
+<!-- Booking Success Popup -->
+<div id="bookingPopup" class="popup-overlay">
+
+    <div class="popup-box">
+
+        <img src="../images/success.jpg"
+             alt="Booking Success">
+
+        <h2>Booking Confirmed!</h2>
+
+        <p>
+            Thank you for choosing
+            <strong>CineVista Travels</strong>.
+        </p>
+
+        <p>
+            Your vehicle has been booked successfully.
+        </p>
+
+        <button onclick="closePopup()">
+            OK
+        </button>
+
+    </div>
+
+</div>
 
 </body>
 </html>

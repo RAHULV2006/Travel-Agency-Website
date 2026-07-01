@@ -36,7 +36,7 @@
                 <li><a href="booking.html">Vehicle Booking</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="contact.html" class="active">Contact Us</a></li>
-                 <li><a href="login.html">Logout</a></li>
+                <li><a href="profile.html">My Profile</a></li>
             </ul>
         </nav>
 
@@ -122,15 +122,18 @@
     type="text"
     id="name"
     name="name"
-    placeholder="Your Name"
+    placeholder="Name"
+    pattern="[A-Za-z ]+"
+    title="Only letters and spaces are allowed"
+    maxlength="50"
     required
 >
-
-           <input
+<input
     type="email"
     id="email"
     name="email"
-    placeholder="Your Email"
+    placeholder="example@email.com"
+    maxlength="100"
     required
 >
 
@@ -138,13 +141,18 @@
     type="tel"
     id="phone"
     name="phone"
-    placeholder="Phone Number"
+    placeholder="Mobile Number"
+    pattern="[6-9][0-9]{9}"
+    maxlength="10"
+    title="Enter a valid 10-digit mobile number"
     required
 >
-            <textarea
+           <textarea
     id="message"
+    name="message"
     rows="6"
-    placeholder="Enter Your Message"
+    placeholder="Enter your message..."
+    maxlength="500"
     required
 ></textarea>
 

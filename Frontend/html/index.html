@@ -35,7 +35,7 @@
             <li><a href="booking.html">Vehicle Booking</a></li>
             <li><a href="about.html">About Us</a></li>
             <li><a href="contact.html">Contact Us</a></li>
-            <li><a href="login.html">Logout</a></li>
+            <li><a href="profile.html">My Profile</a></li>
         </ul>
         
 
@@ -107,7 +107,7 @@
                 <img src="../images/rameswaram.jpg" alt="">
                 <div class="card-content">
                     <h3>Rameswaram</h3>
-                    <p>Spiritual destination with historic temples with beaches.</p>
+                    <p>Spiritual destination with historic temples</p>
                 </div>
             </div>
             </a>
@@ -120,7 +120,7 @@
                     <div class="card-content">
                         <h3>Kanyakumari</h3>
                         <p>
-                            The southern tip of India famous for
+                            Famous for
                             sunrise and sunset.
                         </p>
 
@@ -242,35 +242,43 @@
 
         <form id="homeContactForm">
 
-    <input
-        type="text"
-        id="homeName"
-        placeholder="Your Name"
-        required
-    >
+     <input
+    type="text"
+    id="homeName"
+    name="name"
+    placeholder="Name"
+    pattern="[A-Za-z ]+"
+    title="Only letters and spaces are allowed"
+    maxlength="50"
+    required
+>
+<input
+    type="email"
+    id="homeEmail"
+    name="email"
+    placeholder="example@email.com"
+    maxlength="100"
+    required
+>
 
-    <input
-        type="email"
-        id="homeEmail"
-        placeholder="Email Address"
-        required
-    >
-
-    <input
-        type="tel"
-        id="homePhone"
-        placeholder="Phone Number"
-        required
-    >
-
-    <textarea
-        id="homeMessage"
-        rows="5"
-        placeholder="Enter Your Message"
-        required>
-    </textarea>
-    
-
+           <input
+    type="tel"
+    id="homePhone"
+    name="phone"
+    placeholder="Mobile Number"
+    pattern="[6-9][0-9]{9}"
+    maxlength="10"
+    title="Enter a valid 10-digit mobile number"
+    required
+>
+           <textarea
+    id="homeMessage"
+    name="message"
+    rows="6"
+    placeholder="Enter your message..."
+    maxlength="500"
+    required
+></textarea>
 
     <button type="submit">
         Send Message

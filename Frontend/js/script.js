@@ -223,7 +223,7 @@ function searchContent() {
         window.location.href = destinations[input];
 
     } else {
-        alert("Sorry! This destination is not currently available in CineVista Travels.");
+        alert("Sorry! This destination is not currently available on our website. Please send as an your request we will contact you soon for further details       ");
 
     }
 }
@@ -240,3 +240,16 @@ function toggleMenu() {
 }
 
 
+function showPopup(){
+
+    document.getElementById("bookingPopup").style.display="flex";
+
+}
+
+function closePopup(){
+
+    document.getElementById("bookingPopup").style.display="none";
+
+    document.getElementById("vehicleBookingForm").reset();
+
+}

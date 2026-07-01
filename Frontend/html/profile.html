@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Profile | CineVista Travels</title>
+
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/profile.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="logo">
+        <h2>CineVista Travels</h2>
+    </div>
+
+    <nav>
+
+        <ul>
+
+            <li><a href="index.html">Home</a></li>
+
+            <li><a href="destinations.html">Destinations</a></li>
+
+            <li><a href="packages.html">Tour Packages</a></li>
+
+            <li><a href="booking.html">Vehicle Booking</a></li>
+
+            <li><a href="about.html">About Us</a></li>
+
+            <li><a href="contact.html">Contact Us</a></li>
+
+            <li>
+
+                <a href="profile.html" class="active">
+
+                    <i class="fas fa-user-circle"></i>
+
+                    My Profile
+
+                </a>
+
+            </li>
+
+        </ul>
+
+    </nav>
+
+</header>
+
+<!-- ================= HERO ================= -->
+
+<section class="profile-banner">
+
+    <div class="banner-content">
+
+        <h1><br>
+
+            Welcome Back 👋
+
+        </h1>
+
+        <p>
+
+            Manage your bookings, trips and travel history with CineVista Travels.
+
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ================= PROFILE CARD ================= -->
+
+<section class="profile-section">
+
+<div class="profile-card">
+
+<div class="profile-left">
+
+<img
+src="../images/profile.jpg"
+id="profileImage">
+
+<button class="change-photo">
+
+<i class="fas fa-camera"></i>
+
+My Profile
+
+</button>
+
+</div>
+
+<div class="profile-right">
+
+<h2 id="userName">
+
+Loading...
+
+</h2>
+
+<div class="info-grid">
+
+    <div class="info-box">
+
+    <i class="fas fa-user"></i>
+
+    <div>
+
+        <h4>Username</h4>
+
+        <p id="userUsername">
+            Loading...
+        </p>
+
+    </div>
+
+</div>
+
+<div class="info-box">
+
+<i class="fas fa-phone"></i>
+
+<div>
+
+<h4>Phone</h4>
+
+<p id="userPhone">
+
+Loading...
+
+</p>
+
+</div>
+
+</div>
+
+<div class="info-box">
+
+<i class="fas fa-envelope"></i>
+
+<div>
+
+<h4>Email</h4>
+
+<p id="userEmail">
+
+Loading...
+
+</p>
+
+</div>
+
+</div>
+
+
+
+
+</div>
+
+<div class="profile-buttons">
+
+<button class="primary-btn" onclick="openEditModal()">
+
+<i class="fas fa-user-edit"></i>
+
+Edit Profile
+
+</button>
+
+<button class="secondary-btn">
+
+<i class="fas fa-key"></i><a href="forgot-password.html" style="text-decoration: none; color: inherit;">Change Password</a>
+
+
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= DASHBOARD ================= -->
+
+<section class="dashboard">
+
+<div class="dashboard-card">
+
+<i class="fas fa-suitcase"></i>
+
+<h2 id="totalBookings">0</h2>
+
+<p>Total Bookings</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<i class="fas fa-plane-departure"></i>
+
+<h2 id="upcomingTrips">0</h2>
+
+<p>Upcoming Trips</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<i class="fas fa-check-circle"></i>
+
+<h2 id="completedTrips">0</h2>
+
+<p>Completed Trips</p>
+
+</div>
+
+<div class="dashboard-card">
+
+<i class="fas fa-times-circle"></i>
+
+<h2 id="cancelledTrips">0</h2>
+
+<p>Cancelled Trips</p>
+
+</div>
+
+</section>
+<!-- ================= BOOKING HISTORY ================= -->
+
+<section class="booking-history">
+
+    <div class="section-header">
+
+        <h2>
+            <i class="fas fa-history"></i>
+            Booking History
+        </h2>
+
+        <p>
+            View all your previous and upcoming bookings.
+        </p>
+
+    </div>
+
+    <div class="booking-controls">
+
+        <input
+            type="text"
+            id="searchBooking"
+            placeholder="🔍 Search by destination..."
+        >
+
+        <select id="statusFilter">
+
+            <option value="">All Status</option>
+
+            <option value="Upcoming">Upcoming</option>
+
+            <option value="Confirmed">Confirmed</option>
+
+            <option value="Completed">Completed</option>
+
+            <option value="Cancelled">Cancelled</option>
+
+        </select>
+
+    </div>
+
+    <div class="table-responsive">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Booking ID</th>
+
+                    <th>Booking Date</th>
+
+                    <th>Travel Date</th>
+
+                    <th>Pickup</th>
+
+                    <th>Destination</th>
+
+                    <th>Package</th>
+
+                    <th>Vehicle</th>
+
+                    <th>Status</th>
+
+                    <th>Payment</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="bookingTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+<!-- ================= BOOKING DETAILS MODAL ================= -->
+
+<div id="bookingModal" class="modal">
+
+    <div class="modal-content">
+
+        <span
+            class="close"
+            onclick="closeBookingModal()">
+
+            &times;
+
+        </span>
+
+        <h2>
+
+            Booking Details
+
+        </h2>
+
+        <hr>
+
+        <div id="bookingDetails">
+
+        </div>
+
+        <div class="modal-buttons">
+
+            <button
+                onclick="printBooking()">
+
+                <i class="fas fa-print"></i>
+
+                Print
+
+            </button>
+
+           
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= LOGOUT ================= -->
+
+<section class="logout-section">
+
+    <button
+        id="logoutBtn"
+        class="logout-btn">
+
+        <i class="fas fa-sign-out-alt"></i>
+
+        Logout
+
+    </button>
+
+</section>
+<!-- Edit Profile Modal -->
+
+<div id="editProfileModal" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close" onclick="closeEditModal()">&times;</span>
+
+        <h2>Edit Profile</h2>
+
+        <form id="editProfileForm">
+
+            <input
+                type="text"
+                id="editName"
+                placeholder="Full Name"
+                required
+            >
+
+            <input
+                type="email"
+                id="editEmail"
+                placeholder="Email"
+                required
+            >
+
+            <input
+                type="tel"
+                id="editPhone"
+                placeholder="Phone Number"
+                pattern="[6-9][0-9]{9}"
+                required
+            >
+
+            <button type="submit">
+                Save Changes
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-content">
+
+        <h2>CineVista Travels</h2>
+
+        <p>
+
+            Your trusted travel partner across South India.
+
+        </p>
+
+        <div class="social-icons">
+
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+
+            <a href="#"><i class="fab fa-instagram"></i></a>
+
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+
+            <a href="#"><i class="fab fa-youtube"></i></a>
+
+        </div>
+
+        <p class="copyright">
+
+            © 2026 CineVista Travels. All Rights Reserved.
+
+        </p>
+
+    </div>
+
+</footer>
+
+<!-- ================= LOADING SPINNER ================= -->
+
+<div id="loadingSpinner" class="loading-spinner">
+
+    <div class="spinner"></div>
+
+</div>
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script src="../js/script.js"></script>
+
+<script src="../js/profile.js"></script>
+
+</body>
+
+</html>

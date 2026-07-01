@@ -275,13 +275,19 @@ document.getElementById("loginForm")
         );
 
         const data = await response.json();
+        console.log("LOGIN RESPONSE:", data);
 
         if(data.success){
 
-            localStorage.setItem(
-                "cinevistaUser",
-                data.fullname
-            );
+           localStorage.setItem(
+    "cinevistaUser",
+    data.user.fullname
+);
+
+localStorage.setItem(
+    "userEmail",
+    data.user.email
+);
 
             alert("Login Successful!");
 

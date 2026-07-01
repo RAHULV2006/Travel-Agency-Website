@@ -43,8 +43,6 @@ app.post("/contact", (req, res) => {
 });
 app.post("/booking", (req, res) => {
 
-    console.log("Booking Data:", req.body);
-
     const {
         name,
         phone,
@@ -52,13 +50,14 @@ app.post("/booking", (req, res) => {
         destination,
         packageName,
         vehicle,
-        travelDate
+        travelDate,
+        email
     } = req.body;
 
     const sql = `
     INSERT INTO bookings
-    (name, phone, pickup, destination, vehicle, travel_date, \`package\`)
-    VALUES (?, ?, ?, ?, ?, ?, ?)
+    (name, phone, pickup, destination, vehicle, travel_date, package, email, status, paymentstatus, bookingdate)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
 
     db.query(
@@ -70,26 +69,171 @@ app.post("/booking", (req, res) => {
             destination,
             vehicle,
             travelDate,
-            packageName
+            packageName,
+            email,
+            "Upcoming",
+            "Pending",
+            new Date().toLocaleDateString()
         ],
         (err, result) => {
 
-            if(err){
-                console.log("MYSQL ERROR:", err);
+            if (err) {
 
-                return res.status(500).json({
-                    message: err.message
+                console.log(err);
+
+                return res.json({
+                    success: false,
+                    message: "Booking Failed"
                 });
+
             }
 
             res.json({
-                message: "Vehicle booking submitted successfully!"
+                success: true,
+                message: "Booking Confirmed Successfully"
             });
 
         }
     );
 
 });
+
+app.get("/mybookings/:email", (req, res) => {
+
+    const email = req.params.email;
+
+    const sql = `
+    SELECT
+        id,
+        bookingdate,
+        travel_date,
+        pickup,
+        destination,
+        package,
+        vehicle,
+        status,
+        paymentstatus
+    FROM bookings
+    WHERE email = ?
+    ORDER BY id DESC
+    `;
+
+    db.query(sql, [email], (err, result) => {
+
+        if (err) {
+
+            console.log(err);
+
+            return res.json({
+                success: false
+            });
+
+        }
+
+        res.json({
+
+            success: true,
+
+            bookings: result
+
+        });
+
+    });
+
+});
+app.get("/profile/:email", (req, res) => {
+
+    const email = req.params.email;
+
+    const sql =
+    "SELECT fullname, email, phone FROM register WHERE email=?";
+
+    db.query(sql, [email], (err, result) => {
+
+        if (err) {
+            console.log(err);
+            return res.json({
+                success: false
+            });
+        }
+
+        console.log("Database Result:", result);
+
+        if (result.length > 0) {
+
+            return res.json({
+                success: true,
+                user: {
+                    fullname: result[0].fullname,
+                    email: result[0].email,
+                    phone: result[0].phone
+                }
+            });
+
+        } else {
+
+            return res.json({
+                success: false,
+                message: "User not found"
+            });
+
+        }
+
+    });
+
+});
+app.get("/bookings/:username",(req,res)=>{
+
+    const username=req.params.username;
+
+    const sql=
+
+    `
+
+    SELECT
+
+    id,
+
+    travelDate,
+
+    destination,
+
+    vehicle,
+
+    status,
+
+    paymentStatus,
+
+    bookingDate,
+
+    pickup,
+
+    packageName
+
+    FROM bookings
+
+    WHERE username=?
+
+    ORDER BY id DESC
+
+    `;
+
+    db.query(sql,[username],(err,result)=>{
+
+        if(err){
+
+            console.log(err);
+
+            return res.status(500).json([]);
+
+        }
+
+        res.json(result);
+
+    });
+
+});
+
 
 app.post("/login", (req, res) => {
 
@@ -100,25 +244,59 @@ app.post("/login", (req, res) => {
 
     db.query(sql, [email, password], (err, result) => {
 
-        console.log(result);
-
-
-        if(result.length > 0){
+        if (err) {
+            console.log(err);
 
             return res.json({
-                success:true,
-                message:"Login Successful",
-                fullname: result[0].fullname
+                success: false,
+                message: "Database Error"
+            });
+        }
+
+        if (result.length > 0) {
+
+            return res.json({
+
+                success: true,
+
+                message: "Login Successful",
+
+                user: {
+
+                    id: result[0].id,
+
+                    fullname: result[0].fullname,
+
+                    email: result[0].email,
+
+                    phone: result[0].phone
+
+                }
+
             });
 
-        }else{
+        } else {
 
             return res.json({
-                success:false,
-                message:"Invalid Email or Password"
+
+                success: false,
+
+                message: "Invalid Email or Password"
+
             });
 
         }
+
+    });
+
+});
+app.post("/logout",(req,res)=>{
+
+    res.json({
+
+        success:true,
+
+        message:"Logout Successful"
 
     });
 
@@ -168,6 +346,104 @@ app.post("/register", (req, res) => {
         });
 
     });
+
+});
+
+app.put("/cancelBooking/:id", (req,res)=>{
+
+    const id = req.params.id;
+
+    const sql =
+
+    "UPDATE bookings SET status='Cancelled' WHERE id=?";
+
+    db.query(sql,[id],(err,result)=>{
+
+        if(err){
+
+            console.log(err);
+
+            return res.json({
+
+                success:false,
+
+                message:"Unable to cancel trip."
+
+            });
+
+        }
+
+        res.json({
+
+            success:true,
+
+            message:"Trip cancelled successfully."
+
+        });
+
+    });
+
+});
+
+app.put("/updateProfile", (req, res) => {
+
+    const {
+
+        oldEmail,
+        fullname,
+        email,
+        phone
+
+    } = req.body;
+
+    const sql = `
+    UPDATE register
+    SET fullname=?,
+        email=?,
+        phone=?
+    WHERE email=?
+    `;
+
+    db.query(
+
+        sql,
+
+        [
+
+            fullname,
+            email,
+            phone,
+            oldEmail
+
+        ],
+
+        (err, result) => {
+
+            if(err){
+
+                console.log(err);
+
+                return res.json({
+
+                    success:false,
+
+                    message:"Unable to update profile."
+
+                });
+
+            }
+
+            res.json({
+
+                success:true,
+
+                message:"Profile updated successfully."
+
+            });
+
+        }
+
+    );
 
 });
 
